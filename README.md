@@ -6,6 +6,8 @@ This is a project that is done for a module, Python Programming for IOT, where w
 - Tkinter GUI
 - Flask Backend Web server
 
+## Advanced Features
+
 # Installation
  - Download *Insert Required Python version*
  - Run `pip3 install -r requirement.txt` in terminal to install all packages
@@ -14,20 +16,24 @@ This is a project that is done for a module, Python Programming for IOT, where w
 This would be the structure of our Program
 ```
 PYPROG Project/
-├── tkinter/                # Not confirm on this
-│   └── app.py
-├── app/
-│   ├── __init__.py
+├── app/                    # Not confirm on this
+│   └── tkinter.py
+├── server/
+│   ├── database/           # Storage of users and passwords
+│   │   └── users.json
 │   ├── module/
-│   │   └── module.py       # Create the main program here
+│   │   ├── module.py       # Create the main program here
+│   │   └── __init__.py
 │   ├── static/
 │   │   └── style.css
 │   ├── templates/
 │   │   ├── example.html
 │   │   └── index.html
-│   └── app.py              # Creates the Flask App
+│   └── server.py           # Creates the Flask App
 ├── .gitignore
-├── main.py
+├── main.py                 # Main point of entry? 
 ├── README.md
 └── requirement.txt
 ```
+
+
