@@ -16,22 +16,24 @@ This is a project that is done for a module, Python Programming for IOT, where w
 This would be the structure of our Program
 ```
 PYPROG Project/
-├── app/                    # Not confirm on this
+├── app/                    # Most likely won't be added
 │   └── tkinter.py
 ├── server/
 │   ├── database/           # Storage of users and passwords
 │   │   └── users.json
-│   ├── module/
-│   │   ├── module.py       # Create the main program here
-│   │   └── __init__.py
+│   ├── sensors/            # Code for each sensor is stored here
+│   │   ├── keypad.py      
+│   │   └── test.py
 │   ├── static/
 │   │   └── style.css
 │   ├── templates/
-│   │   ├── example.html
-│   │   └── index.html
-│   └── server.py           # Creates the Flask App
+│   │   ├── base.html       # Used for templating
+│   │   ├── index.html       
+│   │   └── login.html
+│   ├── __init__.py         # Creates the Flask App
+│   └── views.py            # Routes for website
 ├── .gitignore
-├── main.py                 # Main point of entry? 
+├── main.py                 # Main point of entry
 ├── README.md
 └── requirement.txt
 ```
