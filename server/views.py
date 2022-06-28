@@ -2,7 +2,7 @@ from flask import Blueprint, redirect, render_template, request, url_for
 
 views = Blueprint('views', __name__)
 
-@views.routes('/')
+@views.route('/')
 def index():
     return redirect("/login")
 
