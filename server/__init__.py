@@ -4,6 +4,7 @@ def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'secret'
 
+    # Imports views blueprint
     from .views import views
     app.register_blueprint(views, url_prefix='/')
 
