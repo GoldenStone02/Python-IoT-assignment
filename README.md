@@ -1,16 +1,20 @@
 # Introduction
-This is a project that is done for a module, Python Programming for IOT, where we are supposed to create a Proof of Concept (POC) where we utilize the skills we learnt through the module to create a funcitonal POC as our final project.
+This is a project that is done for a module, Python Programming for IOT, where we are supposed to create a Proof of Concept (POC) which utilizes the skills we learnt through the module to create a functional POC as our final project in the module. 
+Our group decided to create a smart security system as our idea for our group project
 
 # Features
 ## Basic Features
-- Tkinter GUI
 - Flask Backend Web server
+- Simple JSON Database
 
-## Advanced Features
+## Additional Features
+- 
 
 # Installation
  - Download *Insert Required Python version*
  - Run `pip3 install -r requirement.txt` in terminal to install all packages
+## Installation on Raspberry Pi
+- `git clone https://github.com/username/repo_name.git`
 
 # Structure
 This would be the structure of our Program
@@ -23,7 +27,8 @@ PYPROG Project/
 │   │   └── users.json
 │   ├── sensors/            # Code for each sensor is stored here
 │   │   ├── keypad.py      
-│   │   └── test.py
+│   │   ├── rfid.py      
+│   │   └── servo.py
 │   ├── static/
 │   │   └── style.css
 │   ├── templates/
