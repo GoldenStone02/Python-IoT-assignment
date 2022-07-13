@@ -1,0 +1,2 @@
+Temporary text file. 
+This folder will be used for Image storage for images uploaded by the Raspberry Pi
