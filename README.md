@@ -14,7 +14,11 @@ Our group decided to create a smart security system as our idea for our group pr
  - Download *Insert Required Python version*
  - Run `pip3 install -r requirement.txt` in terminal to install all packages
 ## Installation on Raspberry Pi
-- `git clone https://github.com/username/repo_name.git`
+- Go to `Settings > Developer Settings > Personal Access Token`
+- Click on `Generate Token`
+- `git clone https://user:TOKEN@github.com/username/repo.git`
+
+Source: https://stackoverflow.com/questions/2505096/clone-a-private-repository-github 
 
 # Structure
 This would be the structure of our Program
