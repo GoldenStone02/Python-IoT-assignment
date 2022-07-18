@@ -14,7 +14,7 @@ def keypad(LCD, buzzer):
             [4,5,6],
             [7,8,9],
             ['*',0,'#']] #layout of keys on keypad
-    ROW=[6,20,19,13] #row pins
+    ROW=[9,25,19,13] #row pins
     COL=[11,5,15] #column pins
 
     #set column pins as outputs, and write default value of 1 to each

@@ -2,7 +2,7 @@ def rfid(state, LCD, buzzer):  # state = "REGISTER" or "READ" and LCD will help 
       import RPi.GPIO as GPIO
       from time import sleep
       import sys
-      from .mfrc522 import SimpleMFRC522
+      from mfrc522 import SimpleMFRC522
 
       GPIO.setwarnings(False)
       reader = SimpleMFRC522()

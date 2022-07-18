@@ -6,12 +6,12 @@ def PIR():
 
     GPIO.setmode(GPIO.BOARD) #choose BOARD mode
     GPIO.setwarnings(False)
-    GPIO.setup(15,GPIO.IN) # set GPIO 15 as input
+    GPIO.setup(7,GPIO.IN) # set GPIO 7 as input
 
     sleep(5) #to allow sensor time to stabilize
     PIR_state=0 #use this, so that only a change in state is reported
     while (True):
-        if GPIO.input(15): #read a HIGH i.e. motion is detected
+        if GPIO.input(7): #read a HIGH i.e. motion is detected
             if PIR_state==0:
                 print('detected HIGH i.e. motion detected')
                 PIR_state=1
