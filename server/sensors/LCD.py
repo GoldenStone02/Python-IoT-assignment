@@ -1,5 +1,5 @@
 def LCD(message, message2): # message is variable we want to display on the LCD
-    import I2C_LCD_driver #import the library
+    from . import I2C_LCD_driver #import the library
     from time import sleep
 
     LCD = I2C_LCD_driver.lcd() #instantiate an lcd object, call it LCD

@@ -12,6 +12,7 @@ def rfid(state, LCD, buzzer):  # state = "REGISTER" or "READ" and LCD will help 
             
             # Code for read
             count = 0
+            LCD("Place RFID TAG...","---->")
             if state == "READ":
                   print("Hold card near the reader to check if it is in the database")
                   id = reader.read_id()

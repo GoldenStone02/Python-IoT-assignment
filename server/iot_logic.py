@@ -16,6 +16,7 @@ while True:
     LCD('Awaiting Motion..', '-------->')
     motion_detected = PIR()
     if motion_detected == 'MOTION DETECTED': # For when motion is finally detected, continue onwards to the programme.
+        LCD('Motion Detected', 'ON RFID....')
         # With motion detected, we first want to take a picture 
         take_pic()      # picture taken will be stored in /database/image_upload/picture.jpg
         # RFID will go into READ mode, result == "ACCESS GRANTED" if valid. Else, if invalid, result == "ACCESS DENIED"
