@@ -15,7 +15,9 @@ def rfid(state, LCD, buzzer):  # state = "REGISTER" or "READ" and LCD will help 
             LCD("Place RFID TAG...","---->")
             if state == "READ":
                   print("Hold card near the reader to check if it is in the database")
+                  print(state)
                   id = reader.read_id()
+                  print(str(id))
                   id = str(id)
                   print(f"card id is : {id} ")   # printing of card id
                   f = open('server/database/authlist.txt', "r+")
@@ -44,7 +46,7 @@ def rfid(state, LCD, buzzer):  # state = "REGISTER" or "READ" and LCD will help 
                   id = reader.read_id()
                   id = str(id)
                   f = open('server/database/authlist.txt', "a+")
-                  f = open('server/database/authlist.txt', "r+")
+                  f = open('/database/authlist.txt', "r+")
                   if f.mode == "r+":
                         auth=f.read()
                   if id not in auth:
