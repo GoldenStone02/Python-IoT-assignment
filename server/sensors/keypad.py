@@ -7,7 +7,7 @@ def keypad(LCD, buzzer):
     import RPi.GPIO as GPIO
     from time import sleep
 
-    GPIO.setmode(GPIO.BCM)
+    GPIO.setmode(GPIO.BOARD)
     GPIO.setwarnings(False)
 
     MATRIX=[ [1,2,3],
@@ -15,7 +15,7 @@ def keypad(LCD, buzzer):
             [7,8,9],
             ['*',0,'#']] #layout of keys on keypad
     ROW=[6,20,19,13] #row pins
-    COL=[12,5,16] #column pins
+    COL=[11,5,15] #column pins
 
     #set column pins as outputs, and write default value of 1 to each
     for i in range(3):
