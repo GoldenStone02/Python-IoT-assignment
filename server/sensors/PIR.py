@@ -4,7 +4,7 @@ def PIR():
     import RPi.GPIO as GPIO #import RPi.GPIO module
     from time import sleep
 
-    GPIO.setmode(GPIO.BCM) #choose BCM mode
+    GPIO.setmode(GPIO.BOARD) #choose BCM mode
     GPIO.setwarnings(False)
     GPIO.setup(17,GPIO.IN) # set GPIO 17 as input
 
