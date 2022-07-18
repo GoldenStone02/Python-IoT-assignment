@@ -1,8 +1,8 @@
 def LED_State(state):   # state = on / off 
     import RPi.GPIO as GPIO #import RPi.GPIO module, rename it as GPIO
 
-    GPIO.setmode(GPIO.BOARD) #choose BCM mode, refer to pins as GPIO no.
+    GPIO.setmode(GPIO.BOARD) #choose BOARD mode, refer to pins as GPIO no.
     GPIO.setwarnings(False)
-    GPIO.setup(24,GPIO.OUT) #set GPIO 24 as output
+    GPIO.setup(29,GPIO.OUT) #set GPIO 29 as output
 
-    GPIO.output(24,1) #output logic high/'1'
+    GPIO.output(29,1) #output logic high/'1'
