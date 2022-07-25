@@ -27,6 +27,7 @@ while True:
             result = keypad(LCD, buzzer_on)  # this will return "CORRECT PASSWORD" if it is valid
             if result == "CORRECT PASSWORD": 
                 servo("OPEN")
+                LCD('Door is unlocked!', '----->')
                 # TO DO: notify owner of unlocked door in web site
                 # LCD OFF? 
                 # Remote change rfid or passwords or unlock 
