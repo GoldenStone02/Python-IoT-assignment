@@ -52,6 +52,7 @@ def keypad(LCD, buzzer):
                             if count >= 5:   # after 5 wrong attempts, we will tell user to redo whole operation again 
                                 LCD("5 Incorrect Attempts. Please try again.", "Offing keypad...")
                                 sleep(15)
+                                return 
                                 
                             LCD("INCORRECT PASSWORD.", "Please try again...")
 
