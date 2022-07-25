@@ -4,7 +4,7 @@ def buzzer_on():
 
     GPIO.setmode(GPIO.BOARD) #choose BCM mode
     GPIO.setwarnings(False)
-    GPIO.setup(12,GPIO.OUT) #set GPIO 7 as output
+    GPIO.setup(12,GPIO.OUT) #set GPIO 12 as output
 
     GPIO.output(12,1) #output logic high/'1'
     sleep(1) #delay 1 second
