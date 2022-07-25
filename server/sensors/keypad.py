@@ -30,7 +30,7 @@ def keypad(LCD, buzzer):
     keyPressed = []  # this will be used to store all key presses 
     count = 0   # count will help keep track of number of wrong attempts 
     while (True):
-
+        print(keyPressed)
         for i in range(3): #loop thru’ all columns
             GPIO.output(COL[i],0) #pull one column pin low
             for j in range(4): #check which row pin becomes low
@@ -55,7 +55,7 @@ def keypad(LCD, buzzer):
                                 
                             LCD("INCORRECT PASSWORD.", "Please try again...")
 
-                    LCD(' '.join(keyPressed), "# ENTER, * DELETE")    #print the key pressed on LCD one by one
+                    LCD(' '.join(keyPressed), "# ENTER * DELETE")    #print the key pressed on LCD one by one
 
                     while GPIO.input(ROW[j])==0: #debounce
                         sleep(0.1)
