@@ -2,7 +2,7 @@ def rfid(state, LCD, buzzer):  # state = "REGISTER" or "READ" and LCD will help 
       import RPi.GPIO as GPIO
       from time import sleep
       import sys
-      from mfrc522 import SimpleMFRC522
+      from .mfrc522 import SimpleMFRC522
 
       GPIO.setwarnings(False)
       reader = SimpleMFRC522()
@@ -17,7 +17,7 @@ def rfid(state, LCD, buzzer):  # state = "REGISTER" or "READ" and LCD will help 
                   id = reader.read_id()
                   id = str(id)
                   print(f"card id is : {id} ")   # printing of card id
-                  f = open('server/database/authlist.txt', "r+")
+                  f = open('../server/database/authlist.txt', "r+")
                   if f.mode == "r+":
                         auth=f.read()
                   if id in auth:
