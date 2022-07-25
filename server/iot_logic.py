@@ -20,7 +20,7 @@ while True:
         # With motion detected, we first want to take a picture 
         take_pic()      # picture taken will be stored in /database/image_upload/picture.jpg
         # RFID will go into READ mode, result == "ACCESS GRANTED" if valid. Else, if invalid, result == "ACCESS DENIED"
-        result = rfid("READ", LCD, buzzer_on)   
+        result = rfid("READ", LCD, buzzer_on, LED_State("ON"))   
 
         if result == "ACCESS GRANTED":
             # With RFID tag verified, we now need to verify the password from keypad. 
