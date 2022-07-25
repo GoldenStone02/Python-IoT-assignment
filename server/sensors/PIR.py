@@ -11,7 +11,7 @@ def PIR():
     sleep(5) #to allow sensor time to stabilize
     PIR_state=0 #use this, so that only a change in state is reported
     while (True):
-        if GPIO.input(1): #read a HIGH i.e. motion is detected
+        if GPIO.input(11): #read a HIGH i.e. motion is detected
             if PIR_state==0:
                 print('detected HIGH i.e. motion detected')
                 PIR_state=1

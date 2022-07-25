@@ -14,8 +14,8 @@ def keypad(LCD, buzzer):
             [4,5,6],
             [7,8,9],
             ['*',0,'#']] #layout of keys on keypad
-    ROW=[9,25,19,13] #row pins
-    COL=[11,5,15] #column pins
+    ROW=[26,23,33,10] #row pins
+    COL=[32,29,36] #column pins
 
     #set column pins as outputs, and write default value of 1 to each
     for i in range(3):
@@ -28,15 +28,15 @@ def keypad(LCD, buzzer):
 
     #scan keypad
     keyPressed = []  # this will be used to store all key presses 
+    count = 0   # count will help keep track of number of wrong attempts 
     while (True):
-        count = 0   # count will help keep track of number of wrong attempts 
-
+        print(keyPressed)
         for i in range(3): #loop thru’ all columns
             GPIO.output(COL[i],0) #pull one column pin low
             for j in range(4): #check which row pin becomes low
                 if GPIO.input(ROW[j])==0: #if a key is pressed
                     print(f"key pressed: {MATRIX[j][i]}") #print the key pressed
-                    keyPressed.append(MATRIX[j][i])
+                    keyPressed.append(f"{MATRIX[j][i]}")
                     
                     # now, we will check whether user deletes or presses enter. 
                     # we will use the symbols * for delete and # for enter
@@ -52,10 +52,11 @@ def keypad(LCD, buzzer):
                             if count >= 5:   # after 5 wrong attempts, we will tell user to redo whole operation again 
                                 LCD("5 Incorrect Attempts. Please try again.", "Offing keypad...")
                                 sleep(15)
+                                return 
                                 
                             LCD("INCORRECT PASSWORD.", "Please try again...")
 
-                    LCD(' '.join(keyPressed), "# For Enter and * For Delete---->")    #print the key pressed on LCD one by one
+                    LCD(' '.join(keyPressed), "# ENTER * DELETE")    #print the key pressed on LCD one by one
 
                     while GPIO.input(ROW[j])==0: #debounce
                         sleep(0.1)

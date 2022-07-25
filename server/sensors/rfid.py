@@ -1,4 +1,4 @@
-def rfid(state, LCD, buzzer):  # state = "REGISTER" or "READ" and LCD will help display messages, buzzer for sounding when wrong rfid tag
+def rfid(state, LCD, buzzer, LED):  # state = "REGISTER" or "READ" and LCD will help display messages, buzzer for sounding when wrong rfid tag
       import RPi.GPIO as GPIO
       from time import sleep
       import sys
@@ -8,9 +8,9 @@ def rfid(state, LCD, buzzer):  # state = "REGISTER" or "READ" and LCD will help 
       reader = SimpleMFRC522()
       auth = []
 
+      # Code for read
+      count = 0
       while True:
-            # Code for read
-            count = 0
             LCD("Place RFID TAG...","---->")
             if state == "READ":
                   print("Hold card near the reader to check if it is in the database")
@@ -29,7 +29,8 @@ def rfid(state, LCD, buzzer):  # state = "REGISTER" or "READ" and LCD will help 
                   else:
                         count += 1
                         print("Card with UID", id, "not found in database; access denied")
-                        LCD('Incorrect RFID Tag, Please Try again', "---x---")
+                        LCD('Incorrect RFID, Please Try again', "---x---")
+                        LED()
                         buzzer()
                         
                         if count == 5:  # this is to ensure that rfid will get out of loop after a number of attempts and off. 

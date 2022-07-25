@@ -4,9 +4,9 @@ def servo(state): # State = UNLOCKED OR CLOSED
 
     GPIO.setmode(GPIO.BOARD) #choose BCM mode
     GPIO.setwarnings(False)
-    GPIO.setup(31,GPIO.OUT) #set GPIO 26 as output
+    GPIO.setup(37,GPIO.OUT) #set GPIO 26 as output
 
-    PWM=GPIO.PWM(31,50) #set 50Hz PWM output at GPIO26
+    PWM=GPIO.PWM(37,50) #set 50Hz PWM output at GPIO26
 
     if state == 'CLOSED':
         PWM.start(3) #3% duty cycle
