@@ -20,6 +20,7 @@ I2CBUS = 1
 
 # LCD Address
 ADDRESS = 0x3f
+#ADDRESS = 0x27 # BLUE LCD 
 
 import smbus
 from time import sleep

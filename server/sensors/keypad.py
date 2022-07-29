@@ -16,8 +16,11 @@ def keypad(LCD, buzzer, LED):
             [4,5,6],
             [7,8,9],
             ['*',0,'#']] #layout of keys on keypad
-    ROW=[26,23,33,10] #row pins
-    COL=[32,29,36] #column pins
+    #ROW=[26,23,33,10] #row pins
+    #COL=[32,29,36] #column pins
+
+    ROW=[31, 38, 35, 33]
+    COL = [32, 29, 36]
 
     #set column pins as outputs, and write default value of 1 to each
     for i in range(3):
@@ -33,7 +36,6 @@ def keypad(LCD, buzzer, LED):
     count = 0   # count will help keep track of number of wrong attempts 
     count2 = 0  # this will help keypad to auto off if user leaves midway 
     while (True):
-        print(keyPressed)
         for i in range(3): #loop thru’ all columns
             GPIO.output(COL[i],0) #pull one column pin low
             for j in range(4): #check which row pin becomes low
@@ -49,7 +51,7 @@ def keypad(LCD, buzzer, LED):
                         # we will check the password here 
                         if ' '.join(keyPressed) == password:  # password for now is set as 123456 on line 1
                             return "CORRECT PASSWORD"
-                        else: 
+                        else: # incorrect password
                             count += 1
                             buzzer()   # on buzzer for sound
                             LED()      # on LED indicating that incorrect password
