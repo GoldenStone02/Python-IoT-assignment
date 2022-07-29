@@ -1,6 +1,9 @@
 f = open('../server/database/password.txt', "r+")
 password = f.read()  # password is stored in ../server/database/password.txt folder 
-print(password)
+
+f = open('../server/database/otp.txt', "r+")
+otp = f.read()  # password is stored in ../server/database/password.txt folder 
+
 
 from time import sleep
 
@@ -41,16 +44,17 @@ def keypad(LCD, buzzer, LED):
             for j in range(4): #check which row pin becomes low
                 if GPIO.input(ROW[j])==0: #if a key is pressed
                     print(f"key pressed: {MATRIX[j][i]}") #print the key pressed
-                    if MATRIX[j][i] != '#' or MATRIX[j][i] != '*':
+                    if MATRIX[j][i] != '#' and MATRIX[j][i] != '*':
                         keyPressed.append(f"{MATRIX[j][i]}")
                     
                     # now, we will check whether user deletes or presses enter. 
                     # we will use the symbols * for delete and # for enter
-                    if MATRIX[j][i] == "*" and len(keyPressed) != 0:
+                    if MATRIX[j][i] == "*" and keyPressed != []:
+                        print(f"Deleted: {keyPressed[-1]}")
                         keyPressed.pop(-1) # Delete last element from list (last number typed)
                     elif MATRIX[j][i] == "#":
                         # we will check the password here 
-                        if ''.join(keyPressed) == password:  # password for now is set as 123456 on line 1
+                        if ''.join(keyPressed) == password or ''.join(keyPressed) == otp:  # password for now is set as 123456 on line 1
                             return "CORRECT PASSWORD"
                         else: # incorrect password
                             count += 1
