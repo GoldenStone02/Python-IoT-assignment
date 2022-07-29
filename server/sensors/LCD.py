@@ -14,7 +14,7 @@ def LCD(message, message2): # message is variable we want to display on the LCD
         sleep(2) # wait 0.1 sec
         return 
 
-    elif (message == None):  # For no messages, we will clear display
+    elif (message == None and message2 == None):  # For no messages, we will clear display
         LCD.lcd_clear() #clear the display
         sleep(2) #wait 1 sec
         return

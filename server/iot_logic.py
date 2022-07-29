@@ -10,6 +10,8 @@ from sensors.PIR import PIR
 from sensors.rfid import rfid
 from sensors.servo import servo
 
+from time import sleep
+
 # Main Programme
 while True:
     servo("CLOSED")
@@ -24,10 +26,12 @@ while True:
 
         if result == "ACCESS GRANTED":
             # With RFID tag verified, we now need to verify the password from keypad. 
-            result = keypad(LCD, buzzer_on)  # this will return "CORRECT PASSWORD" if it is valid
+            result = keypad(LCD, buzzer_on, LED_State)  # this will return "CORRECT PASSWORD" if it is valid
             if result == "CORRECT PASSWORD": 
                 servo("OPEN")
                 LCD('Door is unlocked!', '----->')
-                # TO DO: notify owner of unlocked door in web site
-                # LCD OFF? 
+                sleep(5)
+                LCD(None, None)  # Offing LCD   
+
+                # TO DO: notify owner of unlocked door in web site  
                 # Remote change rfid or passwords or unlock 

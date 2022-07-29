@@ -61,6 +61,7 @@ def rfid(state, LCD, buzzer, LED):  # state = "REGISTER" or "READ" and LCD will 
                         pos = number.index(id)
                         LCD("Card with UID", id, "already registered as entry #", pos)
                         buzzer()
+                        LED()
                         print("Card with UID", id, "already registered as entry #", pos)
                         if count == 5:  # this is to ensure that rfid will get out of loop after a number of attempts and off. 
                               return "ALREADY EXISTS"

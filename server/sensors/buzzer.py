@@ -9,4 +9,4 @@ def buzzer_on():
     GPIO.output(12,1) #output logic high/'1'
     sleep(1) #delay 1 second
     GPIO.output(12,0) #output logic low/'0'
-    sleep(1) #delay 1 second
+    sleep(0.5) #delay 0.5 second
