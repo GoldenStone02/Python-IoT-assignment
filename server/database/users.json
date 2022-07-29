@@ -2,15 +2,15 @@
     "users": [
         {
             "id": 1,
-            "name": "admin",
             "username": "admin",
-            "password": "password123"
+            "email": "admin@example.com",
+            "pin": 1234
         },
         {
             "id": 2,
-            "name": "user",
             "username": "user",
-            "password": "password123"
+            "email": "user@example.com",
+            "pin": 111111
         }
     ]
 }
