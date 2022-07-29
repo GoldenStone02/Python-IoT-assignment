@@ -63,7 +63,7 @@ def keypad(LCD, buzzer, LED):
                             
                         LCD("INCORRECT PASSWORD.", "Please try again...")  
 
-                LCD(' '.join(keyPressed), "# ENTER * DEL")    #print the key pressed on LCD one by one
+                LCD(''.join(keyPressed), "# ENTER * DEL")    #print the key pressed on LCD one by one
 
                 while GPIO.input(ROW[j])==0: #debounce
                     sleep(0.1)
