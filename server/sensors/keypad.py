@@ -41,12 +41,12 @@ def keypad(LCD, buzzer, LED):
             for j in range(4): #check which row pin becomes low
                 if GPIO.input(ROW[j])==0: #if a key is pressed
                     print(f"key pressed: {MATRIX[j][i]}") #print the key pressed
-                    if MATRIX[j][i] != '#':
+                    if MATRIX[j][i] != '#' or MATRIX[j][i] != '*':
                         keyPressed.append(f"{MATRIX[j][i]}")
                     
                 # now, we will check whether user deletes or presses enter. 
                 # we will use the symbols * for delete and # for enter
-                elif MATRIX[j][i] == "*":
+                if MATRIX[j][i] == "*" and len(keyPressed) != 0:
                     keyPressed.pop(-1) # Delete last element from list (last number typed)
                 elif MATRIX[j][i] == "#":
                     # we will check the password here 
