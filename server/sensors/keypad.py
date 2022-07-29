@@ -41,6 +41,7 @@ def keypad(LCD, buzzer, LED):
             for j in range(4): #check which row pin becomes low
                 if GPIO.input(ROW[j])==0: #if a key is pressed
                     print(f"key pressed: {MATRIX[j][i]}") #print the key pressed
+                    print(keyPressed)
                     if MATRIX[j][i] != '#' or MATRIX[j][i] != '*':
                         keyPressed.append(f"{MATRIX[j][i]}")
                     
