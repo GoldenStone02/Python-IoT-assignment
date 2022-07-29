@@ -4,13 +4,13 @@
             "id": 1,
             "username": "admin",
             "email": "admin@example.com",
-            "pin": 1234
+            "password": "1234"
         },
         {
             "id": 2,
             "username": "user",
             "email": "user@example.com",
-            "pin": 111111
+            "password": 111111
         }
     ]
 }
