@@ -50,12 +50,13 @@ def keypad(LCD, buzzer, LED):
                         keyPressed.pop(-1) # Delete last element from list (last number typed)
                     elif MATRIX[j][i] == "#":
                         # we will check the password here 
-                        if ' '.join(keyPressed) == password:  # password for now is set as 123456 on line 1
+                        if ''.join(keyPressed) == password:  # password for now is set as 123456 on line 1
                             return "CORRECT PASSWORD"
                         else: # incorrect password
                             count += 1
                             buzzer()   # on buzzer for sound
                             LED()      # on LED indicating that incorrect password
+                            keyPressed.clear()
                             if count >= 5:   # after 5 wrong attempts, we will tell user to redo whole operation again 
                                 LCD("5 Incorrect Attempts. Please try again.", "Offing keypad...")
                                 sleep(15)
