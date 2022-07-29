@@ -47,11 +47,12 @@ def keypad(LCD, buzzer, LED):
                     
                     # now, we will check whether user deletes or presses enter. 
                     # we will use the symbols * for delete and # for enter
-                    if MATRIX[j][i] == "*" and len(keyPressed) != 0:
+                    if MATRIX[j][i] == "*" and keyPressed != []:
+                        print("deleted")
                         keyPressed.pop(-1) # Delete last element from list (last number typed)
                     elif MATRIX[j][i] == "#":
                         # we will check the password here 
-                        if ''.join(keyPressed) == password:  # password for now is set as 123456 on line 1
+                        if str(''.join(keyPressed)) == password:  # password for now is set as 123456 on line 1
                             return "CORRECT PASSWORD"
                         else: # incorrect password
                             count += 1
