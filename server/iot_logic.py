@@ -1,14 +1,14 @@
 # Need to follow structure of ppt 
 
 # Importing various functions for sensor logic via the sensors folder.
-from .sensors.buzzer import buzzer_on
-from .sensors.camera import take_pic
-from .sensors.keypad import keypad
-from .sensors.LCD import LCD
-from .sensors.LED import LED_State
-from .sensors.PIR import PIR
-from .sensors.rfid import rfid
-from .sensors.servo import servo
+from sensors.buzzer import buzzer_on
+from sensors.camera import take_pic
+from sensors.keypad import keypad
+from sensors.LCD import LCD
+from sensors.LED import LED_State
+from sensors.PIR import PIR
+from sensors.rfid import rfid
+from sensors.servo import servo
 
 from time import sleep
 
@@ -43,17 +43,17 @@ def main():
                     # TO DO: notify owner of unlocked door in web site  
                     # Remote change rfid or passwords or unlock (changing of text files)
 
-# This function is to allow user to open the door remotely 
-def remoteUnlock():
-    servo("OPEN")
-    LCD('Door is unlocked!', '----->')
-    sleep(30)
+# # This function is to allow user to open the door remotely 
+# def remoteUnlock():
+#     servo("OPEN")
+#     LCD('Door is unlocked!', '----->')
+#     sleep(30)
 
-# This function is for users to remotely change rfid tag with a button on the website
-def registerRFID():
-    result = rfid("REGISTER", LCD, buzzer_on, LED_State)  
-    if result == "REGISTERED":
-        return "SUCCESS"
+# # This function is for users to remotely change rfid tag with a button on the website
+# def registerRFID():
+#     result = rfid("REGISTER", LCD, buzzer_on, LED_State)  
+#     if result == "REGISTERED":
+#         return "SUCCESS"
 
 if __name__ == "__main__":
     main()

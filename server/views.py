@@ -1,7 +1,7 @@
 import os
 import json
 import random
-from .iot_logic import remoteUnlock, registerRFID
+from .iot_function import remoteUnlock, registerRFID
 from flask import Blueprint, redirect, render_template, request, url_for, flash
 
 views = Blueprint('views', __name__)
