@@ -10,10 +10,11 @@ from time import sleep
 def remoteUnlock():
     servo("OPEN")
     LCD('Door is unlocked!', '----->')
-    sleep(30)
+    sleep(20)
 
 # This function is for users to remotely change rfid tag with a button on the website
 def registerRFID():
     result = rfid("REGISTER", LCD, buzzer_on, LED_State)  
     if result == "REGISTERED":
-        return "SUCCESS"
+        sleep(20)
+    
