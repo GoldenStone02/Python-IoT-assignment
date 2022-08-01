@@ -38,6 +38,7 @@ def keypad(LCD, buzzer, LED):
     keyPressed = []  # this will be used to store all key presses 
     count = 0   # count will help keep track of number of wrong attempts 
     count2 = 0  # this will help keypad to auto off if user leaves midway 
+    LCD(''.join(keyPressed), "# ENTER * DEL")    #print the key pressed on LCD one by one
     while (True):
         for i in range(3): #loop thru’ all columns
             GPIO.output(COL[i],0) #pull one column pin low
