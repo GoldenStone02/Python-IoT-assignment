@@ -40,7 +40,7 @@ def login():
         username = request.form['username']
         password = request.form['password']
         
-        data = fetch_data("../Project/server/database/users.json")
+        data = fetch_data("./server/database/users.json")
 
         # Check if username exists in db
         for user in data['users']:
@@ -79,7 +79,7 @@ def change_pin():
             # Redirect to dashboard
             flash("Pin changed successfully", "success")
 
-            upload_data("../Project/server/database/password.txt", int(new_pin))
+            upload_data("./server/database/password.txt", int(new_pin))
 
             return redirect(url_for('views.dashboard'))
         elif len(new_pin) != 4:
@@ -96,7 +96,7 @@ def generate_otp():
 
     # Generate OTP that will be keyed into the keypad
     otp = random.randint(1000, 9999)
-    upload_data("../Project/server/database/password.txt", int(otp))
+    upload_data("./server/database/password.txt", int(otp))
 
     return render_template('generateOTP.html', otp=otp, error=error)
 
