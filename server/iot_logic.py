@@ -42,7 +42,14 @@ while True:
                 # TO DO: notify owner of unlocked door in web site  
                 # Remote change rfid or passwords or unlock (changing of text files)
 
+# This function is to allow user to open the door remotely 
 def remoteUnlock():
     servo("OPEN")
     LCD('Door is unlocked!', '----->')
     sleep(30)
+
+# This function is for users to remotely change rfid tag with a button on the website
+def registerRFID():
+    result = rfid("REGISTER", LCD, buzzer_on, LED_State)  
+    if result == "REGISTERED":
+        return "SUCCESS"
