@@ -10,7 +10,7 @@
             "id": 2,
             "username": "user",
             "email": "user@example.com",
-            "password": 111111
+            "password": "testing"
         }
     ]
 }

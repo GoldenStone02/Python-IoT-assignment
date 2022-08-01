@@ -28,7 +28,7 @@ def login():
     error = ""
     if request.method == "POST":
         username = request.form['username']
-        pin = request.form['pin']
+        password = request.form['password']
         
         data = fetch_data("../Project/server/database/users.json")
 
@@ -36,19 +36,15 @@ def login():
         for user in data['users']:
             print(user['username'])
             if user['username'] == username:
-                if user['pin'] == int(pin):
+                if user['password'] == password:
 
                     # ! Need to transfer username to session
                     return redirect(url_for('views.index'))
                 else:
-                    error = "PIN is incorrect"
+                    error = "Password is incorrect"
                     break
         else:
             error = "Username does not exist"
-        
-        # Check if pin is correct
-        if len(pin) != 6:
-            error = "PIN must be 6 digits"
 
     return render_template('login.html', error=error)
 
@@ -104,11 +100,18 @@ def generate_otp():
 def monitor():
     error = ""
 
-
-
     return render_template('monitor.html')
 
 # End of Site Routing
+
+# Backend Querying
+
+@views.route("/fetch_data")
+def fetch_data():
+    data = fetch_data("../Project/server/database/users.json")
+
+
+# End of Backend Querying
 
 # General functions
 
@@ -125,12 +128,12 @@ def upload_data(filepath: str, data: any):
 def change_data(username: str, pin: int):
     print(os.path.abspath(__file__))
     
-    data = fetch_data("../Project/server/database/users.json")
+    data = fetch_data("../Project/server/database/password.txt")
 
     for user in data['users']:
         if user['username'] == username:
             user['pin'] = pin
             break
 
-    upload_data("../Project/server/database/users.json", data)
-    data2 = fetch_data("../Project/server/database/users.json")
+    upload_data("../Project/server/database/password.txt", data)
+    data2 = fetch_data("../Project/server/database/password.txt")

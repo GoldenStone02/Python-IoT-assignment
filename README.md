@@ -16,21 +16,28 @@ Our group decided to create a smart security system as our idea for our group pr
 ## Installation on Raspberry Pi
 - Go to `Settings > Developer Settings > Personal Access Token`
 - Click on `Generate Token`
-- `git clone https://user:TOKEN@github.com/username/repo.git`
+- `git clone https://GoldenStone02:TOKEN@github.com/GoldenStone02/Python-IoT-assignment`
 
 Source: https://stackoverflow.com/questions/2505096/clone-a-private-repository-github 
 
-# Structure
+# File Structure
 This would be the structure of our Program
 ```
 PYPROG Project/
-├── app/                    # Most likely won't be added
-│   └── tkinter.py
 ├── server/
 │   ├── database/           # Storage of users and passwords
+│   │   ├── image_upload/   # Storage of images and video      
+│   │   ├── authlist.txt    # RFID authentication list      
 │   │   └── users.json
-│   ├── sensors/            # Code for each sensor is stored here
-│   │   ├── keypad.py      
+│   ├── sensors/            # Code for each sensor
+│   │   ├── MFRC522         # RFID Library
+│   │   ├── buzzer.py
+│   │   ├── camera.py      
+│   │   ├── l2C_LCD_driver.py      
+│   │   ├── keypay.py
+│   │   ├── LCD.py
+│   │   ├── LED.py
+│   │   ├── PIR.py
 │   │   ├── rfid.py      
 │   │   └── servo.py
 │   ├── static/
@@ -40,11 +47,12 @@ PYPROG Project/
 │   │   ├── index.html       
 │   │   └── login.html
 │   ├── __init__.py         # Creates the Flask App
-│   └── views.py            # Routes for website
+│   ├── iot_logic.py        # Main IOT logic
+│   └── views.py            # Routes for websites
 ├── .gitignore
 ├── main.py                 # Main point of entry
 ├── README.md
-└── requirement.txt
+└── requirement.txt         # Download required files
 ```
 
 
