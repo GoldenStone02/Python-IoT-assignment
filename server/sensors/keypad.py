@@ -1,9 +1,3 @@
-f = open('../server/database/password.txt', "r+")
-password = f.read()  # password is stored in ../server/database/password.txt folder 
-
-f = open('../server/database/otp.txt', "r+")
-otp = f.read()  # password is stored in ../server/database/password.txt folder 
-
 from datetime import datetime
 from time import sleep
 
@@ -14,6 +8,11 @@ def keypad(LCD, buzzer, LED):
 
     timeON = datetime.now() # this will help keypad to auto off if user leaves midway 
 
+    f = open('../server/database/password.txt', "r+")
+    password = f.read()  # password is stored in ../server/database/password.txt folder 
+
+    f = open('../server/database/otp.txt', "r+")
+    otp = f.read()  # password is stored in ../server/database/password.txt folder 
 
     GPIO.setmode(GPIO.BOARD)
     GPIO.setwarnings(False)
@@ -79,5 +78,5 @@ def keypad(LCD, buzzer, LED):
                         sleep(0.1)
             GPIO.output(COL[i],1) #write back default value of 1
 
-        if (timeON - timeNOW).seconds >= 300000:   # This is for the case if user decides to quit midway, the keypad will off by itself
+        if (timeNOW - timeON).seconds >= 300000:   # This is for the case if user decides to quit midway, the keypad will off by itself
             return "KEYPAD OFF"
