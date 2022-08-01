@@ -36,7 +36,7 @@ while True:
             if result == "CORRECT PASSWORD": 
                 servo("OPEN")
                 LCD('Door is unlocked!', '----->')
-                sleep(5)
+                sleep(30)
                 LCD(None, None)  # Offing LCD   
 
                 # TO DO: notify owner of unlocked door in web site  
@@ -45,3 +45,4 @@ while True:
 def remoteUnlock():
     servo("OPEN")
     LCD('Door is unlocked!', '----->')
+    sleep(30)
