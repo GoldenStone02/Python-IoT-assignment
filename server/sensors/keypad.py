@@ -4,13 +4,16 @@ password = f.read()  # password is stored in ../server/database/password.txt fol
 f = open('../server/database/otp.txt', "r+")
 otp = f.read()  # password is stored in ../server/database/password.txt folder 
 
-
+from datetime import datetime
 from time import sleep
 
 
 def keypad(LCD, buzzer, LED):
     import RPi.GPIO as GPIO
     from time import sleep
+
+    timeON = datetime.now() # this will help keypad to auto off if user leaves midway 
+
 
     GPIO.setmode(GPIO.BOARD)
     GPIO.setwarnings(False)
@@ -19,11 +22,12 @@ def keypad(LCD, buzzer, LED):
             [4,5,6],
             [7,8,9],
             ['*',0,'#']] #layout of keys on keypad
-    ROW=[26,23,33,10] #row pins correct
-    COL=[32,29,36] #column pins correct
 
-    # ROW=[31, 38, 35, 33]  # for other class one
-    # COL = [32, 29, 36]    # for other class one
+    # ROW=[26,23,33,10] #row pins other class one
+    # COL=[32,29,36] #column pins other class one
+
+    ROW=[31, 38, 35, 33]  # Correct one for gpio.board
+    COL = [32, 29, 36]    # Correct one for gpio.board
 
     #set column pins as outputs, and write default value of 1 to each
     for i in range(3):
@@ -37,9 +41,9 @@ def keypad(LCD, buzzer, LED):
     #scan keypad
     keyPressed = []  # this will be used to store all key presses 
     count = 0   # count will help keep track of number of wrong attempts 
-    count2 = 0  # this will help keypad to auto off if user leaves midway 
     LCD(''.join(keyPressed), "# ENTER * DEL")    #print the key pressed on LCD one by one
     while (True):
+        timeNOW = datetime.now()
         for i in range(3): #loop thru’ all columns
             GPIO.output(COL[i],0) #pull one column pin low
             for j in range(4): #check which row pin becomes low
@@ -75,7 +79,5 @@ def keypad(LCD, buzzer, LED):
                         sleep(0.1)
             GPIO.output(COL[i],1) #write back default value of 1
 
-        count2 += 1
-        sleep(1)
-        if count2 == 10000:   # This is for the case if user decides to quit midway, the keypad will off by itself
+        if (timeON - timeNOW).seconds >= 300000:   # This is for the case if user decides to quit midway, the keypad will off by itself
             return "KEYPAD OFF"
