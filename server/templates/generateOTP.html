@@ -10,17 +10,12 @@
         <p>We have generated a one time password below. Please input the password before it expires</p>
         <div class="col-6 mx-auto">
         <form method="POST">
-            <h1 class="text-danger"> WORKING IN PROGRESS </h1>
-            <div class="row g-3 mt-3">
-                <div class="col-6 form-floating">
-                    <input type="password" name="new_pin" class="form-control">
-                    <label>New Pin</label>
+            <div class="row">
+                <div class="col-6 mx-auto">
+                    <h1>
+                        {{otp}}
+                    </h1>
                 </div>
-                <div class="col-6 form-floating">
-                    <input type="password" name="new_pin2" class="form-control">
-                    <label>Confirm new Pin</label>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </form>
 

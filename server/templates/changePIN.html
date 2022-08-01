@@ -10,11 +10,21 @@
         <form method="POST">
             <div class="row g-3 mt-3">
                 <div class="col-6 form-floating">
-                    <input type="password" name="new_pin" class="form-control">
+                    <input 
+                    type="password" 
+                    onkeypress="return event.charCode>=48 && event.charCode<=57" 
+                    name="new_pin" 
+                    class="form-control"
+                    >
                     <label>New Pin</label>
                 </div>
                 <div class="col-6 form-floating">
-                    <input type="password" name="new_pin2" class="form-control">
+                    <input 
+                    type="password" 
+                    onkeypress="return event.charCode>=48 && event.charCode<=57" 
+                    name="new_pin2" 
+                    class="form-control"
+                    >
                     <label>Confirm new Pin</label>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Main Page{% endblock %}
+
+{% block content %}
+<!-- This is used to display the GUI -->
+    <div class="container">
+        <h1 class="text-center mb-4">Image Taken from Camera</h1>
+        <div class="row mt-5">
+            <div class="col-4">
+                <h3>Image 1</h3>
+                <img class="w-75 mb-5" src="../static/image_upload/picture1.jpg">
+            </div>
+            <div class="col-4">
+                <h3>Image 2</h3>
+                <img class="w-75 mb-5" src="../static/image_upload/picture2.jpg">
+            </div>
+            <div class="col-4">
+                <h3>Image 3</h3>
+                <img class="w-75 mb-5" src="../static/image_upload/picture3.jpg">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <h3>Image 4</h3>
+                <img class="w-75 mb-5" src="../static/image_upload/picture4.jpg">
+            </div>
+            <div class="col-4">
+                <h3>Image 5</h3>
+                <img class="w-75 mb-5" src="../static/image_upload/picture5.jpg">
+            </div>
+            <div class="col-4">
+                <h3>Image 6</h3>
+                <img class="w-75 mb-5" src="../static/image_upload/picture6.jpg">
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

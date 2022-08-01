@@ -3,7 +3,7 @@
 
 {% block content %}
 <!-- This is used to display the GUI -->
-<section class="vh-100" style="background-color: #eee;">
+<div class="vh-100" style="background-color: #eee;">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-md-12 col-xl-4">
@@ -14,7 +14,7 @@
                 <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
                   class="rounded-circle img-fluid" style="width: 100px;" />
               </div>
-              <h4 class="mb-2">{% Username %}</h4>
+              <h4 class="mb-2">{{ username }}</h4>
               <p class="text-muted mb-4">User<span class="mx-2">|</span> <a
                   href="#!">SecuritySystem.com</a></p>
               <div class="mb-4 pb-2">
@@ -32,9 +32,9 @@
                 Update Details
               </button> 
               <div class="text-center mt-5 mb-2">
-                <button type="button" class="btn btn-danger btn-rounded btn-lg" href="/login">
+                <a type="button" class="btn btn-danger btn-rounded btn-lg" href="{{url_for('views.login')}}">
                     Logout
-                </button> 
+                </a> 
               </div>
             </div>
           </div>
@@ -42,6 +42,6 @@
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
 {% endblock %}

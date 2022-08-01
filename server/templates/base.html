@@ -20,17 +20,16 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-link" href="{{url_for('views.index')}}">Home</a>
-                    <a class="nav-link" href="{{url_for('views.login')}}">Login</a>
+                    <a class="nav-link" href="{{url_for('views.dashboard')}}">Home</a>
+                    <a class="nav-link" href="{{url_for('views.monitor')}}">Monitor</a>
+                    <a class="nav-link" href="{{url_for('views.profile')}}">Profile</a>
                 </div>
             </div>
         </div>
     </nav>
     
-    <div class="main-content">
-        {% block content %}
-        {% endblock %}
-    </div>
+    {% block content %}
+    {% endblock %}
 
     <!-- jQuery Import -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

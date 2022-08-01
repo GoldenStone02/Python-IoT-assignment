@@ -78,5 +78,5 @@ def keypad(LCD, buzzer, LED):
                         sleep(0.1)
             GPIO.output(COL[i],1) #write back default value of 1
 
-        if (timeNOW - timeON).seconds >= 300000:   # This is for the case if user decides to quit midway, the keypad will off by itself
+        if (timeNOW - timeON).seconds >= 3000:   # This is for the case if user decides to quit midway, the keypad will off by itself
             return "KEYPAD OFF"
