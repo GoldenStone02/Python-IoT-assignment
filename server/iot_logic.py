@@ -11,6 +11,7 @@ from sensors.rfid import rfid
 from sensors.servo import servo
 
 from time import sleep
+import requests
 
 def main():
     picList = [1,2,3,4,5,6]
@@ -37,6 +38,9 @@ def main():
                 if result == "CORRECT PASSWORD": 
                     servo("OPEN")
                     LCD('Door is unlocked!', '----->')
+                    resp = requests.post(f"https://api.thingspeak.com/apps/thingtweet/1/statuses/update",  # Sending to twitter acc notification 
+                        json={"api_key":"WFZR29Y48NUDO6H4","status":"Door has been unlocked!"})
+
                     sleep(30)
                     LCD(None, None)  # Offing LCD   
 

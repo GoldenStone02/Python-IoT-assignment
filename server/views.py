@@ -19,17 +19,21 @@ def index():
 @views.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
     if request.method == "POST":
-        if "change_pin" in request.form:
-            print("Change Pin")
-            return redirect(url_for('views.change_pin'))
-        elif "change_rfid" in request.form:
-            registerRFID()
-        elif "generate_otp" in request.form:
-            return redirect(url_for('views.generate_otp'))
-        elif "remote_unlock" in request.form:
-            remoteUnlock()
-        else:
-            pass
+        try:
+            if "change_pin" in request.form:
+                print("Change Pin")
+                return redirect(url_for('views.change_pin'))
+            elif "change_rfid" in request.form:
+                registerRFID()
+            elif "generate_otp" in request.form:
+                return redirect(url_for('views.generate_otp'))
+            elif "remote_unlock" in request.form:
+                remoteUnlock()
+            else:
+                pass
+        except:  
+            pass # if any error,such as crashes, we just pass so that whole programme will continue.
+        
     return render_template('dashboard.html')
 
 # Login Page
