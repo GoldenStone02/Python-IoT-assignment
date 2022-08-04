@@ -32,7 +32,9 @@ def start_server():
     except:
         print("Bind failed. Error : " + str(sys.exc_info()))
         sys.exit()
-    soc.listen(6) # queue up to 6 requests
+    # [Modified] prevents collision of multiple requests on the same socket
+    # queue up to 1 requests
+    soc.listen(1)
     print("Socket now listening")
     # infinite loop- do not reset for every requests
     while True:
