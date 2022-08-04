@@ -1,8 +1,34 @@
 import os
 import json
 import random
-from .web_iot import remoteUnlock, registerRFID
 from flask import Blueprint, redirect, render_template, request, url_for, flash
+import socket
+
+# Socket establising connection to web_iot.py script for remote login and remote register rfid
+
+# This function creates a new connection with the server
+# it returns the socket being connected
+def newConnection():
+    # Connecting to server
+    soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    host = "127.0.0.1"
+    port = 8000
+
+    try:
+        soc.connect((host, port))
+    except:
+        print('\n' + '\33[41m' + "[ERROR] Connection Error. Cannot connect to server" + '\33[0m' )
+        pass
+    
+    return soc
+
+# This function receives the binary input sent from a client
+# It then decodes the message and returns it as a string
+# The arguments of this function are connection which is the socket connection and the max buffer size 
+def receive_input(connection, max_buffer_size):
+    client_input = connection.recv(max_buffer_size)
+    decodedInput = client_input.decode("utf8").rstrip()
+    return decodedInput
 
 views = Blueprint('views', __name__)
 
@@ -24,11 +50,26 @@ def dashboard():
                 print("Change Pin")
                 return redirect(url_for('views.change_pin'))
             elif "change_rfid" in request.form:
-                registerRFID()
+                # Socket to send to request of registering RFID
+                connection = newConnection() # creata a new socket 
+                connection.send(b'--Register RFID--') # let client to go into registerRFID in web_iot.py
+
+                # Server will reply with 'Success or Failure'
+                serverInput = receive_input(connection,max_buffer_size=5120)
+                print('Server Reply:' +'\33[31m' + serverInput + '\33[0m')
+
             elif "generate_otp" in request.form:
                 return redirect(url_for('views.generate_otp'))
             elif "remote_unlock" in request.form:
-                remoteUnlock()
+                # Socket to send to request of remotely unlocking door
+                 # Socket to send to request of registering RFID
+                connection = newConnection() # creata a new socket 
+                connection.send(b'--Remote Unlock Door--') # let client to go into remoteUnlock function in web_iot.py
+
+                # Server will reply with 'RFID Registered Success!' or 'RFID Registered Failed...'
+                serverInput = receive_input(connection,max_buffer_size=5120)
+                print('Server Reply:' +'\33[31m' + serverInput + '\33[0m')
+
             else:
                 pass
         except:  
