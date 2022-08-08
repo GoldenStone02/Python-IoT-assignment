@@ -67,17 +67,6 @@ def remoteUnlock(connection):
     return False   # get out of while True loop of clientThread
 
 
-# This function is for users to remotely change rfid tag with a button on the website
-def registerRFID(connection):
-    result = rfid("REGISTER", LCD, buzzer_on, LED_State)  
-    if result == "REGISTERED":
-        connection.send(b'RFID Registered Success!')
-    else: 
-        connection.send(b'RFID Registered Failed...')
-
-    sleep(10)
-    return False  # get out of while True loop of clientThread
-
 # This function is a thread that the client runs on. It waits for message sent by the client before it does
 # different types of processing.
 # the arguments of the function are connection, the ip and port associated with the client, and the max
@@ -91,10 +80,6 @@ def clientThread(connection, ip, port, max_buffer_size = 5120):
         if "--Remote Unlock Door--" in client_input: # For Remote unlock door
             print('\n' + '\33[32m' + f"Client {ip}:{port} is requesting to unlock door remotely" + '\33[0m')
             is_active = remoteUnlock(connection)
-
-        elif "--Register RFID--" in client_input: # for register RFID
-            print('\n' + '\33[32m' + f"Client {ip}:{port} is requesting to register new RFID tag" + '\33[0m')
-            is_active = registerRFID(connection)
     
     connection.send(b'')
 

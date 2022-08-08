@@ -38,31 +38,3 @@ def rfid(state, LCD, buzzer, LED):  # state = "REGISTER" or "READ" and LCD will 
 
                   sleep(2)
 
-            # Code for registering card remotely
-            elif state == "REGISTER":   
-                  print("Hold card near the reader to register it in the database")
-                  id = reader.read_id()
-                  id = str(id)
-                  f = open('../server/database/authlist.txt', "a+")
-                  f = open('../server/database/authlist.txt', "r+")
-                  if f.mode == "r+":
-                        auth=f.read()
-                  if id not in auth:
-                        f.write(id)
-                        f.write('\n')
-                        f.close()
-                        pos = auth.count('\n')
-                        print("New card with UID", id,  "detected; registered as entry #", pos)
-                        LCD(f"New card with UID {id}",  f"detected; registered as entry # {pos}")
-                        return "REGISTERED"
-                  else:
-                        count += 1 
-                        number = auth.split('\n')
-                        pos = number.index(id)
-                        LCD(f"New card with UID {id}",  f"detected; registered as entry # {pos}")
-                        buzzer()
-                        LED()
-                        print("Card with UID", id, "already registered as entry #", pos)
-                        if count == 5:  # this is to ensure that rfid will get out of loop after a number of attempts and off. 
-                              return "ALREADY EXISTS"
-                  sleep(2)

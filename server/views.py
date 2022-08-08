@@ -49,19 +49,6 @@ def dashboard():
             if "change_pin" in request.form:
                 print("Change Pin")
                 return redirect(url_for('views.change_pin'))
-            elif "change_rfid" in request.form:
-                # Socket to send to request of registering RFID
-                connection = newConnection() # creata a new socket '
-
-                # Server will reply with 'Success or Failure'
-                serverInput = receive_input(connection,max_buffer_size=5120)
-
-                connection.send(b'--Register RFID--') # let client to go into registerRFID in web_iot.py
-
-                # Server will reply with 'Success or Failure'
-                serverInput = receive_input(connection,max_buffer_size=5120)
-                print('Server Reply:' +'\33[31m' + serverInput + '\33[0m')
-
             elif "generate_otp" in request.form:
                 return redirect(url_for('views.generate_otp'))
             elif "remote_unlock" in request.form:
