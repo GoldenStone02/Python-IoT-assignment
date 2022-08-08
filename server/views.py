@@ -53,9 +53,6 @@ def dashboard():
                 # Socket to send to request of registering RFID
                 connection = newConnection() # creata a new socket '
 
-                # Server will reply with 'Success or Failure'
-                serverInput = receive_input(connection,max_buffer_size=5120)
-
                 connection.send(b'--Register RFID--') # let client to go into registerRFID in web_iot.py
 
                 # Server will reply with 'Success or Failure'
@@ -68,8 +65,6 @@ def dashboard():
                 # Socket to send to request of remotely unlocking door
                  # Socket to send to request of registering RFID
                 connection = newConnection() # creata a new socket 
-                # Server will reply with 'Success or Failure'
-                serverInput = receive_input(connection,max_buffer_size=5120)
                 connection.send(b'--Remote Unlock Door--') # let client to go into remoteUnlock function in web_iot.py
 
                 # Server will reply with 'RFID Registered Success!' or 'RFID Registered Failed...'

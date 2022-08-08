@@ -19,16 +19,40 @@ import _thread, time
 
 data = ''
 
-sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-sock.bind(('127.0.0.1', 8000))
+# This function creates a new connection with the server
+# it returns the socket being connected
+def newConnection():
+    # Connecting to server
+    soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    host = "127.0.0.1"
+    port = 8000
+
+    try:
+        soc.connect((host, port))
+    except:
+        print('\n' + '\33[41m' + "[ERROR] Connection Error. Cannot connect to server" + '\33[0m' )
+        pass
+    
+    return soc
+
+# This function receives the binary input sent from a client
+# It then decodes the message and returns it as a string
+# The arguments of this function are connection which is the socket connection and the max buffer size 
+def receive_input(connection, max_buffer_size):
+    client_input = connection.recv(max_buffer_size)
+    decodedInput = client_input.decode("utf8").rstrip()
+    return decodedInput
 
 
 # Define a function for the thread
 def listening_thread():
     global data     # data needs to be defined as global inside the thread
     while True:
-        data_raw, addr = sock.recvfrom(1024)
-        data = data_raw.decode()    # My test message is encoded
+        # Socket to send to request of registering RFID
+        connection = newConnection() # creata a new socket '
+
+        # Server will reply with 'Success or Failure'
+        data = receive_input(connection,max_buffer_size=5120)
         print ("Received message inside thread:", data)
 
 try:
@@ -78,8 +102,8 @@ while 1:
         thread_count = 0
         data = ''   # Empty the variable ready for the next one
         _thread.exit(main, ())
-    else:
-        thread_count += 1
+    elif thread_count == 0:
+        thread_count = 1
         _thread.start_new_thread(main, ())
     time.sleep(2)
 

@@ -85,7 +85,6 @@ def registerRFID(connection):
 def clientThread(connection, ip, port, max_buffer_size = 5120):
     is_active = True
     while is_active:
-        connection.send(b'Connected. Stoping main iot_logic')
         client_input = receive_input(connection, max_buffer_size)
 
         if "--Remote Unlock Door--" in client_input: # For Remote unlock door
@@ -95,8 +94,8 @@ def clientThread(connection, ip, port, max_buffer_size = 5120):
         elif "--Register RFID--" in client_input: # for register RFID
             print('\n' + '\33[32m' + f"Client {ip}:{port} is requesting to register new RFID tag" + '\33[0m')
             is_active = registerRFID(connection)
+            
     
-    connection.send(b'')
 
 start_server()
     
