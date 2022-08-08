@@ -53,13 +53,13 @@ def rfid(state, LCD, buzzer, LED):  # state = "REGISTER" or "READ" and LCD will 
                         f.close()
                         pos = auth.count('\n')
                         print("New card with UID", id,  "detected; registered as entry #", pos)
-                        LCD("New card with UID", id,  "detected; registered as entry #", pos)
+                        LCD(f"New card with UID {id}",  f"detected; registered as entry # {pos}")
                         return "REGISTERED"
                   else:
                         count += 1 
                         number = auth.split('\n')
                         pos = number.index(id)
-                        LCD("Card with UID", id, "already registered as entry #", pos)
+                        LCD(f"New card with UID {id}",  f"detected; registered as entry # {pos}")
                         buzzer()
                         LED()
                         print("Card with UID", id, "already registered as entry #", pos)
