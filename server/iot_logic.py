@@ -14,32 +14,28 @@ from time import sleep
 import requests
 
 import socket
+import _thread, time
 
-# Socket establising connection to web_iot.py script for remote login and remote register rfid
+data = ''
 
-# This function creates a new connection with the server
-# it returns the socket being connected
-def newConnection():
-    # Connecting to server
-    soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    host = "127.0.0.1"
-    port = 8000
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+sock.bind(('127.0.0.1', 8000))
 
-    try:
-        soc.connect((host, port))
-    except:
-        print('\n' + '\33[41m' + "[ERROR] Connection Error. Cannot connect to server" + '\33[0m' )
-        pass
-    
-    return soc
 
-# This function receives the binary input sent from a client
-# It then decodes the message and returns it as a string
-# The arguments of this function are connection which is the socket connection and the max buffer size 
-def receive_input(connection, max_buffer_size):
-    client_input = connection.recv(max_buffer_size)
-    decodedInput = client_input.decode("utf8").rstrip()
-    return decodedInput
+# Define a function for the thread
+def listening_thread():
+    global data     # data needs to be defined as global inside the thread
+    while True:
+        data_raw, addr = sock.recvfrom(1024)
+        data = data_raw.decode()    # My test message is encoded
+        print ("Received message inside thread:", data)
+
+try:
+   _thread.start_new_thread(listening_thread, ())
+except:
+    print ("Error: unable to start thread")
+    quit()
+
 
 def main():
     picList = [1,2,3,4,5,6]
@@ -66,13 +62,22 @@ def main():
                 if result == "CORRECT PASSWORD": 
                     servo("OPEN")
                     LCD('Door is unlocked!', '----->')
-                    resp = requests.post(f"https://api.thingspeak.com/apps/thingtweet/1/statuses/update",  # Sending to twitter acc notification 
-                        json={"api_key":"KP60V4Y3POZWNP19","status":"Door has been unlocked!"})
+                    resp = requests.post("https://api.thingspeak.com/apps/thingtweet/1/statuses/update?api_key=KP60V4Y3POZWNP19&status=Door has been unlocked!")
 
                     sleep(30)
                     LCD(None, None)  # Offing LCD   
                     # TO DO: notify owner of unlocked door in web site  
                     # Remote change rfid or passwords or unlock (changing of text files)
+
+while 1:
+    if data:
+        print ("Stop program because of remote unlock/ rfid")
+        data = ''   # Empty the variable ready for the next one
+        _thread.exit(main, ())
+    else:
+        _thread.start_new_thread(main, ())
+    time.sleep(2)
+
 
 # # This function is to allow user to open the door remotely 
 # def remoteUnlock():
@@ -85,6 +90,3 @@ def main():
 #     result = rfid("REGISTER", LCD, buzzer_on, LED_State)  
 #     if result == "REGISTERED":
 #         return "SUCCESS"
-
-if __name__ == "__main__":
-    main()

@@ -33,8 +33,8 @@ def start_server():
         print("Bind failed. Error : " + str(sys.exc_info()))
         sys.exit()
     # [Modified] prevents collision of multiple requests on the same socket
-    # queue up to 1 requests
-    soc.listen(1)
+    # queue up to 2 requests
+    soc.listen(2)
     print("Socket now listening")
     # infinite loop- do not reset for every requests
     while True:
@@ -60,8 +60,7 @@ def start_server():
 def remoteUnlock(connection):
     servo("OPEN")
     LCD('Door is unlocked!', '----->')
-    resp = requests.post(f"https://api.thingspeak.com/apps/thingtweet/1/statuses/update",
-        json={"api_key":"KP60V4Y3POZWNP19","status":"Door has been unlocked!"})
+    resp = requests.post("https://api.thingspeak.com/apps/thingtweet/1/statuses/update?api_key=KP60V4Y3POZWNP19&status=Door+has+been+unlocked!")
     connection.send(b'Sucess')
     sleep(20)
     servo("CLOSED")
@@ -86,7 +85,7 @@ def registerRFID(connection):
 def clientThread(connection, ip, port, max_buffer_size = 5120):
     is_active = True
     while is_active:
-
+        connection.send(b'Connected. Stoping main iot_logic')
         client_input = receive_input(connection, max_buffer_size)
 
         if "--Remote Unlock Door--" in client_input: # For Remote unlock door
@@ -96,6 +95,8 @@ def clientThread(connection, ip, port, max_buffer_size = 5120):
         elif "--Register RFID--" in client_input: # for register RFID
             print('\n' + '\33[32m' + f"Client {ip}:{port} is requesting to register new RFID tag" + '\33[0m')
             is_active = registerRFID(connection)
+    
+    connection.send(b'')
 
 start_server()
     
