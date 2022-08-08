@@ -14,6 +14,10 @@ from sensors.servo import servo
 from time import sleep
 import requests
 
+
+
+import datetime
+
 def main():
     picList = [1,2,3,4,5,6]
     # Main Programme
@@ -39,7 +43,8 @@ def main():
                 if result == "CORRECT PASSWORD": 
                     servo("OPEN")
                     LCD('Door is unlocked!', '----->')
-                    resp = requests.post("https://api.thingspeak.com/apps/thingtweet/1/statuses/update?api_key=KP60V4Y3POZWNP19&status=Door has been unlocked!")
+                    data = {"api_key": "KP60V4Y3POZWNP19", "status": f"[{datetime.datetime.now()}] Door has been unlocked"}
+                    resp = requests.post("https://api.thingspeak.com/apps/thingtweet/1/statuses/update",data)
 
                     sleep(30)
                     LCD(None, None)  # Offing LCD   

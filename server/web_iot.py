@@ -12,6 +12,8 @@ import sys
 from time import sleep
 import requests
 
+import datetime
+
 # This function receives the binary input sent from a client
 # It then decodes the message and returns it as a string
 # The arguments of this function are connection which is the socket connection and the max buffer size 
@@ -60,7 +62,8 @@ def start_server():
 def remoteUnlock(connection):
     servo("OPEN")
     LCD('Door is unlocked!', '----->')
-    resp = requests.post("https://api.thingspeak.com/apps/thingtweet/1/statuses/update?api_key=KP60V4Y3POZWNP19&status=Door+has+been+unlocked!")
+    data = {"api_key": "KP60V4Y3POZWNP19", "status": f"[{datetime.datetime.now()}] Door has been unlocked"}
+    resp = requests.post("https://api.thingspeak.com/apps/thingtweet/1/statuses/update",data)
     connection.send(b'Sucess')
     sleep(20)
     servo("CLOSED")
