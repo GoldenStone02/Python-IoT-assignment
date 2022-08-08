@@ -64,6 +64,7 @@ def remoteUnlock(connection):
         json={"api_key":"WFZR29Y48NUDO6H4","status":"Door has been unlocked!"})
     connection.send(b'Sucess')
     sleep(20)
+    servo("CLOSED")
     return False   # get out of while True loop of clientThread
 
 

@@ -13,6 +13,34 @@ from sensors.servo import servo
 from time import sleep
 import requests
 
+import socket
+
+# Socket establising connection to web_iot.py script for remote login and remote register rfid
+
+# This function creates a new connection with the server
+# it returns the socket being connected
+def newConnection():
+    # Connecting to server
+    soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    host = "127.0.0.1"
+    port = 8000
+
+    try:
+        soc.connect((host, port))
+    except:
+        print('\n' + '\33[41m' + "[ERROR] Connection Error. Cannot connect to server" + '\33[0m' )
+        pass
+    
+    return soc
+
+# This function receives the binary input sent from a client
+# It then decodes the message and returns it as a string
+# The arguments of this function are connection which is the socket connection and the max buffer size 
+def receive_input(connection, max_buffer_size):
+    client_input = connection.recv(max_buffer_size)
+    decodedInput = client_input.decode("utf8").rstrip()
+    return decodedInput
+
 def main():
     picList = [1,2,3,4,5,6]
     # Main Programme
