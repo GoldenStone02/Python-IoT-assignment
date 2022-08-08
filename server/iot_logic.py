@@ -1,6 +1,7 @@
 # Need to follow structure of ppt 
 
 # Importing various functions for sensor logic via the sensors folder.
+from concurrent.futures import thread
 from sensors.buzzer import buzzer_on
 from sensors.camera import take_pic
 from sensors.keypad import keypad
@@ -69,12 +70,16 @@ def main():
                     # TO DO: notify owner of unlocked door in web site  
                     # Remote change rfid or passwords or unlock (changing of text files)
 
+thread_count = 0
+
 while 1:
-    if data:
+    if data and thread_count == 1:
         print ("Stop program because of remote unlock/ rfid")
+        thread_count = 0
         data = ''   # Empty the variable ready for the next one
         _thread.exit(main, ())
     else:
+        thread_count += 1
         _thread.start_new_thread(main, ())
     time.sleep(2)
 
