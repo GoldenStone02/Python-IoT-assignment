@@ -7,13 +7,10 @@ Our group decided to create a smart security system as our idea for our group pr
 - Flask Backend Web server
 - Simple JSON Database
 
-## Additional Features
-- 
-
 # Installation
  - Download *Insert Required Python version*
  - Run `pip3 install -r requirement.txt` in terminal to install all packages
-## Installation on Raspberry Pi
+## Installation on Raspberry Pi from Github
 - Go to `Settings > Developer Settings > Personal Access Token`
 - Click on `Generate Token`
 - `git clone https://GoldenStone02:TOKEN@github.com/GoldenStone02/Python-IoT-assignment`
