@@ -67,11 +67,10 @@ def main():
                     servo("OPEN")
                     LCD('Door is unlocked!', '----->')
                     resp = requests.post(f"https://api.thingspeak.com/apps/thingtweet/1/statuses/update",  # Sending to twitter acc notification 
-                        json={"api_key":"WFZR29Y48NUDO6H4","status":"Door has been unlocked!"})
+                        json={"api_key":"KP60V4Y3POZWNP19","status":"Door has been unlocked!"})
 
                     sleep(30)
                     LCD(None, None)  # Offing LCD   
-
                     # TO DO: notify owner of unlocked door in web site  
                     # Remote change rfid or passwords or unlock (changing of text files)
 

@@ -61,7 +61,7 @@ def remoteUnlock(connection):
     servo("OPEN")
     LCD('Door is unlocked!', '----->')
     resp = requests.post(f"https://api.thingspeak.com/apps/thingtweet/1/statuses/update",
-        json={"api_key":"WFZR29Y48NUDO6H4","status":"Door has been unlocked!"})
+        json={"api_key":"KP60V4Y3POZWNP19","status":"Door has been unlocked!"})
     connection.send(b'Sucess')
     sleep(20)
     servo("CLOSED")

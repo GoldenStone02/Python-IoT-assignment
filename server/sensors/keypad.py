@@ -8,12 +8,6 @@ def keypad(LCD, buzzer, LED):
 
     timeON = datetime.now() # this will help keypad to auto off if user leaves midway 
 
-    f = open('../server/database/password.txt', "r+")
-    password = f.read()  # password is stored in ../server/database/password.txt folder 
-
-    f = open('../server/database/otp.txt', "r+")
-    otp = f.read()  # password is stored in ../server/database/password.txt folder 
-
     GPIO.setmode(GPIO.BOARD)
     GPIO.setwarnings(False)
 
@@ -42,6 +36,12 @@ def keypad(LCD, buzzer, LED):
     count = 0   # count will help keep track of number of wrong attempts 
     LCD(''.join(keyPressed), "# ENTER * DEL")    #print the key pressed on LCD one by one
     while (True):
+            
+        f = open('../server/database/password.txt', "r+")
+        password = f.read()  # password is stored in ../server/database/password.txt folder 
+
+        f = open('../server/database/otp.txt', "r+")
+        otp = f.read()  # password is stored in ../server/database/password.txt folder 
         timeNOW = datetime.now()
         for i in range(3): #loop thru’ all columns
             GPIO.output(COL[i],0) #pull one column pin low
