@@ -22,8 +22,9 @@ This would be the structure of our Program
 PYPROG Project/
 ├── server/
 │   ├── database/           # Storage of users and passwords
-│   │   ├── image_upload/   # Storage of images and video      
 │   │   ├── authlist.txt    # RFID authentication list      
+│   │   ├── otp.txt         # One Time Password      
+│   │   ├── password.txt    # Password  
 │   │   └── users.json
 │   ├── sensors/            # Code for each sensor
 │   │   ├── MFRC522         # RFID Library
@@ -37,6 +38,7 @@ PYPROG Project/
 │   │   ├── rfid.py      
 │   │   └── servo.py
 │   ├── static/
+│   │   ├── image_upload/   # Storage of images and video 
 │   │   └── style.css
 │   ├── templates/
 │   │   ├── base.html       # Used for templating
