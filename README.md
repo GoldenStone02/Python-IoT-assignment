@@ -44,7 +44,8 @@ PYPROG Project/
 │   │   └── login.html
 │   ├── __init__.py         # Creates the Flask App
 │   ├── iot_logic.py        # Main IOT logic
-│   └── views.py            # Routes for websites
+│   ├── views.py            # Routes for websites
+│   └── web_iot.py          # Connects the Raspberry Pi with the Backend Flask
 ├── .gitignore
 ├── main.py                 # Main point of entry
 ├── README.md
