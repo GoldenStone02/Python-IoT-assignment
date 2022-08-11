@@ -3,19 +3,18 @@ This is a project that is done for a module, Python Programming for IOT, where w
 Our group decided to create a smart security system as our idea for our group project
 
 # Features
+
 ## Basic Features
+- Sensors attached via backend APIs
 - Flask Backend Web server
-- Simple JSON Database
+- Simple JSON/Text Database
+- Socket Programming in the Backend
 
 # Installation
- - Download *Insert Required Python version*
+ - Download **Python Version 3.7 and onwards**
  - Run `pip3 install -r requirement.txt` in terminal to install all packages
 ## Installation on Raspberry Pi from Github
-- Go to `Settings > Developer Settings > Personal Access Token`
-- Click on `Generate Token`
-- `git clone https://GoldenStone02:TOKEN@github.com/GoldenStone02/Python-IoT-assignment`
-
-Source: https://stackoverflow.com/questions/2505096/clone-a-private-repository-github 
+- `git clone https://github.com/GoldenStone02/Python-IoT-assignment`
 
 # File Structure
 This would be the structure of our Program
